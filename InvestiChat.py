@@ -1,14 +1,20 @@
 # InvestiChat - A chat GPT investment Assistant with NSE-listed companies' integrated reports
 # and financial statements since 2010. The tools to be used are Langchain and Streamlit
-# Setting up the required libraries
-import os  # os is used to set up the OpenAI API key
-from langchain.llms import OpenAI  # The main OpenAI language model (LLM) service is imported from LangChain
-from langchain.embeddings import OpenAIEmbeddings  # These are the LLM embeddings
-import streamlit as st  # Streamlit is used to for creating the user interface
-from langchain.document_loaders import PyPDFLoader  # PyPDFLoader will be used for loading PDF documents
-from langchain.vectorstores import chroma  # To handle the document data, Chroma will be used as the vector store
-from langchain.agents.agent_toolkits import create_vectorstore_agent
-from langchain.agents.agent_toolkits import VectorStoreToolkit  # To manage the integration of vector stores with the LLM
-from langchain.agents.agent_toolkits import VectorStoreInfo
-# The OpenAI API Key setup so that we access the LLM service at OpenAI
+# Setting up the required libraries that will be used in this project
+import os  # used to set up the OpenAI API key
+from langchain.llms import OpenAI  # The main OpenAI language model is imported
+from langchain.embeddings import OpenAIEmbeddings  # Importing embedding modules of LLM
+import streamlit as st  # This is used to develop the user interface
+from langchain.document_loaders import PyPDFLoader  # This will allow us to load PDF documents
+from langchain.vectorstores import chroma  # This is the vector store for handling document data
+from langchain.agents.agent_toolkits import (
+    create_vectorstore_agent,
+    VectorStoreToolkit,
+    VectorStoreInfo)  # These toolkits will allow us to manage the integration of vector stores with the LLM
 
+# Setting up the OpenAI API key and initializing the model. The OpenAI Key grants access to the OpenAL LLM Service
+os.environ['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'] = 'InvestiChat_Key'
+llm = OpenAI(temperature=0.1, verbose=True)  # This creates an instance of the LLM service with a temperature of 0.1,
+# to control how creative the responses from the model will be. To allow us receive additional information about the
+# models processing, the parameter verbose=True is applied
+embeddings = OpenAIEmbeddings()
