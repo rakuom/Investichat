@@ -13,7 +13,7 @@ from langchain.agents.agent_toolkits import (
     VectorStoreInfo)  # These toolkits will allow us to manage the integration of vector stores with the LLM
 
 # Setting up the OpenAI API key and initializing the model. The OpenAI Key grants access to the OpenAL LLM Service
-os.environ['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'] = 'InvestiChat_Key'
+os.environ['OPENAI_API_KEY'] = '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'
 llm = OpenAI(temperature=0.1, verbose=True)  # This creates an instance of the LLM service with a temperature of 0.1,
 # to control how creative the responses from the model will be. To allow us receive additional information about the
 # models processing, the parameter verbose=True is applied
