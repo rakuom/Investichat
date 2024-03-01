@@ -111,5 +111,30 @@ def add_bg_from_url():
            unsafe_allow_html=True
     )
 add_bg_from_url()
+# Adding an image to the interface
+from PIL import Image
+image_path = "InvestiChat.png"
+#set the desired width for the image in pixels
+desired_width = 100
+image = image.open(image_path)
+#Resizing the image to the desired width
+aspect_ratio = image.width / image.height
+desired_height = int(desired_width / aspect_ratio)
+resized_image = image.resize((100, 50))
+#To center the image, we will use st.beta_container() context manager
+with st.container():
+    st.image(image_path, caption='InvestiChat', width=200)
+#Compile response to user input
+if prompt:
+    response = agent_executor.run(prompt)
+    st.write(response)
+#Ensure document similarity search is done
+with st.expander('Document Similarity Search'):
+    search = store.similarity_search_with_score(prompt)
+    st.write(search[0][0].page_content)
+
+
+
+
 
 
